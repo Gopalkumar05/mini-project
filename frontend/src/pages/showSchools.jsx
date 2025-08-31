@@ -20,7 +20,7 @@ export default function ShowSchools() {
             className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-4 flex flex-col items-center"
           >
             <img
-              src={`https://mini-project-rm2k.onrender.com${school.image}`}
+              src={`https://mini-project-rm2k.onrender.com${school.imageUrl}`}
               alt={school.name}
               className="h-40 w-full object-cover rounded-xl mb-4"
             />
