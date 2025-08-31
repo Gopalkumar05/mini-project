@@ -5,7 +5,7 @@ export default function ShowSchools() {
   const [schools, setSchools] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/schools/all')
+    axios.get('https://mini-project-rm2k.onrender.com/api/schools/all')
       .then(res => setSchools(res.data))
       .catch(err => console.error(err));
   }, []);
@@ -20,7 +20,7 @@ export default function ShowSchools() {
             className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-4 flex flex-col items-center"
           >
             <img
-              src={`http://localhost:5000${school.image}`}
+              src={`https://mini-project-rm2k.onrender.com${school.image}`}
               alt={school.name}
               className="h-40 w-full object-cover rounded-xl mb-4"
             />
