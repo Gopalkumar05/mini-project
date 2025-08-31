@@ -1,18 +1,19 @@
+
 import express from 'express';
 import multer from 'multer';
 import fs from 'fs';
 import path from 'path';
-import { addSchool, getSchools,deleteSchool,editSchool } from '../controllers/schoolController.js';
+import { addSchool, getSchools, deleteSchool, editSchool } from '../controllers/schoolController.js';
 
 const router = express.Router();
 
-// Ensure the upload directory exists
+
 const uploadDir = path.join(process.cwd(), 'uploads', 'schoolImages');
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
 
-// Multer storage configuration
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, uploadDir);
@@ -22,7 +23,7 @@ const storage = multer.diskStorage({
   },
 });
 
-// File filter for images only
+
 const fileFilter = (req, file, cb) => {
   const allowedTypes = /jpeg|jpg|png|gif/;
   const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
@@ -35,16 +36,16 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-// Multer configuration with size limit (5MB)
+
 const upload = multer({
   storage,
   fileFilter,
   limits: { fileSize: 5 * 1024 * 1024 },
 });
 
-// Routes
 router.post('/add', upload.single('image'), addSchool);
 router.get('/all', getSchools);
-router.delete('/:id', deleteSchool);
+router.delete('/:id', deleteSchool); 
 router.put('/:id', upload.single('image'), editSchool);
+
 export default router;
